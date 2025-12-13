@@ -27,7 +27,7 @@ BEGIN
             '未处理'
         );
     
-    -- 2. 35KV电压超37KV告警（任务书明确要求）
+    -- 2. 35KV电压超37KV告警
     ELSEIF v_voltage_level = '35KV' AND NEW.voltage > 37.0 THEN
         INSERT INTO alert_info (
             alert_no, alert_type, related_device_no, 
@@ -45,7 +45,7 @@ BEGIN
             '37.0 KV'
         );
     
-    -- 3. 电流超限告警（需要根据实际设备设置阈值）
+    -- 3. 电流超限告警
     ELSEIF (v_voltage_level = '35KV' AND NEW.current > 2000) OR
            (v_voltage_level = '0.4KV' AND NEW.current > 3000) THEN
         INSERT INTO alert_info (
@@ -67,4 +67,5 @@ BEGIN
             END
         );
     END IF;
+
 END
