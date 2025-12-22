@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧能源管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 登录界面 -->
+        <div id="login-container" class="container">
+            <div class="login-form" id="login-form">
+                <h1>智慧能源管理系统</h1>
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" placeholder="请输入用户名">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" placeholder="请输入密码">
+                </div>
+                <button id="login-btn" class="btn btn-primary">登录</button>
+                <p class="register-link">还没有账号？<a href="#" id="register-link">立即注册</a></p>
+            </div>
+            
+            <!-- 注册表单 -->
+            <div class="register-form" id="register-form" style="display: none;">
+                <h1>用户注册</h1>
+                <div class="form-group">
+                    <label for="reg-username">用户名</label>
+                    <input type="text" id="reg-username" placeholder="请输入用户名（字母开头，4-20位）">
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">邮箱</label>
+                    <input type="email" id="reg-email" placeholder="请输入邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">密码</label>
+                    <input type="password" id="reg-password" placeholder="请输入密码（至少8位，包含字母和数字）">
+                </div>
+                <div class="form-group">
+                    <label for="reg-fullname">姓名（可选）</label>
+                    <input type="text" id="reg-fullname" placeholder="请输入姓名">
+                </div>
+                <div class="form-group">
+                    <label for="reg-phone">电话（可选）</label>
+                    <input type="tel" id="reg-phone" placeholder="请输入电话">
+                </div>
+                <button id="register-btn" class="btn btn-primary">注册</button>
+                <p class="login-link">已有账号？<a href="#" id="login-back-link">返回登录</a></p>
+            </div>
+        </div>
+
+        <!-- 主界面 -->
+        <div id="main-container" style="display: none;">
+            <!-- 顶部导航栏 -->
+            <header class="navbar">
+                <div class="navbar-brand">
+                    <h2>智慧能源管理系统</h2>
+                </div>
+                <div class="navbar-right">
+                    <span id="current-user">欢迎，用户</span>
+                    <button id="logout-btn" class="btn btn-secondary">退出登录</button>
+                </div>
+            </header>
+
+            <!-- 侧边菜单 -->
+            <aside class="sidebar">
+                <ul class="menu">
+                    <li><a href="#dashboard" class="menu-item active" data-page="dashboard">仪表板</a></li>
+                    <li><a href="#alarm" class="menu-item" data-page="alarm">告警管理</a></li>
+                    <li><a href="#energy" class="menu-item" data-page="energy">能源管理</a></li>
+                    <li><a href="#substation" class="menu-item" data-page="substation">变电站管理</a></li>
+                    <li><a href="#profile" class="menu-item" data-page="profile">个人中心</a></li>
+                </ul>
+            </aside>
+
+            <!-- 主内容区域 -->
+            <main class="content">
+                <!-- 仪表板页面 -->
+                <div id="dashboard-page" class="page active">
+                    <h1>系统仪表板</h1>
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <h3>总告警数</h3>
+                            <div id="total-alarms" class="card-value">0</div>
+                        </div>
+                        <div class="card">
+                            <h3>待处理告警</h3>
+                            <div id="pending-alarms" class="card-value">0</div>
+                        </div>
+                        <div class="card">
+                            <h3>总能耗</h3>
+                            <div id="total-energy" class="card-value">0</div>
+                        </div>
+                        <div class="card">
+                            <h3>峰值负载</h3>
+                            <div id="peak-load" class="card-value">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 告警管理页面 -->
+                <div id="alarm-page" class="page">
+                    <h1>告警管理</h1>
+                    <div class="alarm-controls">
+                        <button id="refresh-alarms" class="btn btn-primary">刷新告警</button>
+                    </div>
+                    <table id="alarm-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>告警ID</th>
+                                <th>设备ID</th>
+                                <th>告警类型</th>
+                                <th>发生时间</th>
+                                <th>告警级别</th>
+                                <th>告警内容</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alarm-table-body">
+                            <!-- 告警数据将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 能源管理页面 -->
+                <div id="energy-page" class="page">
+                    <h1>能源管理</h1>
+                    <div class="energy-controls">
+                        <button id="refresh-devices" class="btn btn-primary">刷新设备</button>
+                    </div>
+                    <table id="device-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>设备ID</th>
+                                <th>设备名称</th>
+                                <th>设备类型</th>
+                                <th>安装位置</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="device-table-body">
+                            <!-- 设备数据将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 变电站管理页面 -->
+                <div id="substation-page" class="page">
+                    <h1>变电站管理</h1>
+                    <p>变电站管理功能正在开发中...</p>
+                </div>
+
+                <!-- 个人中心页面 -->
+                <div id="profile-page" class="page">
+                    <h1>个人中心</h1>
+                    <p>个人中心功能正在开发中...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
