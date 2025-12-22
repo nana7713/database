@@ -9,7 +9,7 @@ class Config:
     """应用配置类"""
     
     # Flask基础配置
-    SECRET_KEY = os.environ.get('SECRET_KEY') or '智慧能源管理系统密钥-2024'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or '智慧能源管理系统密钥-2025'
     
     # JWT配置 - 会话超时30分钟（符合任务书要求）
     JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') or 'jwt-secret-key'
@@ -22,4 +22,5 @@ class Config:
     
     # 数据库配置
     DATABASE_URL = os.environ.get('DATABASE_URL') or \
+
         'mysql+pymysql://root:123123@localhost/smart_energy_db'
